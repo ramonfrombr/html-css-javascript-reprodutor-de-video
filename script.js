@@ -23,7 +23,32 @@ function atualizarIconeDeReproducao() {
   }
 }
 
+// Atualiza tempo de progresso do vídeo
+function atualizarProgresso() {
+  // Calcula a porcentagem de vídeo que foi reproduzido
+  progresso.value = (video.currentTime / video.duration) * 100;
+
+  // Seleciona os minutos
+  let minutos = Math.floor(video.currentTime / 60);
+  if (minutos >= 10) {
+    minutos = String(minutos);
+  } else if (minutos < video.duration) {
+    minutos = "0" + String(minutos);
+  }
+
+  // Seleciona os segundos
+  let segundos = Math.floor(video.currentTime % 60);
+  if (segundos >= 10) {
+    segundos = String(segundos);
+  } else if (segundos < video.duration) {
+    segundos = "0" + String(segundos);
+  }
+
+  tempo.innerHTML = `${minutos}:${segundos}`;
+}
+
 // Detectores de eventos
 video.addEventListener("click", alternarStatusDoVideo);
 video.addEventListener("pause", atualizarIconeDeReproducao);
 video.addEventListener("play", atualizarIconeDeReproducao);
+video.addEventListener("timeupdate", atualizarProgresso);
