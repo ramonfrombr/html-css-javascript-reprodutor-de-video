@@ -14,5 +14,16 @@ function alternarStatusDoVideo() {
   }
 }
 
+// Alterna entre ícones de pausa e reprodução dependendo do status do vídeo
+function atualizarIconeDeReproducao() {
+  if (video.paused) {
+    reproduzir.innerHTML = '<i class="fa fa-play fa-2x"></i>';
+  } else {
+    reproduzir.innerHTML = '<i class="fa fa-pause fa-2x"></i>';
+  }
+}
+
 // Detectores de eventos
 video.addEventListener("click", alternarStatusDoVideo);
+video.addEventListener("pause", atualizarIconeDeReproducao);
+video.addEventListener("play", atualizarIconeDeReproducao);
