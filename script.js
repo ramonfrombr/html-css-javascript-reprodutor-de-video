@@ -47,8 +47,13 @@ function atualizarProgresso() {
   tempo.innerHTML = `${minutos}:${segundos}`;
 }
 
+function definirProgressoDoVideo() {
+  video.currentTime = (+progresso.value * video.duration) / 100;
+}
+
 // Detectores de eventos
 video.addEventListener("click", alternarStatusDoVideo);
 video.addEventListener("pause", atualizarIconeDeReproducao);
 video.addEventListener("play", atualizarIconeDeReproducao);
 video.addEventListener("timeupdate", atualizarProgresso);
+progresso.addEventListener("change", definirProgressoDoVideo);
